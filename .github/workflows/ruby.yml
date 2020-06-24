@@ -30,6 +30,10 @@ jobs:
         run: |
           gem uninstall bundler
           gem install bundler -v ${{ matrix.bundler-version }}
+      - name: Use Default Bundler
+        if: ${{ !matrix.bundler-version }}
+        run: |
+          bundler --version
       - name: Build and test
         env:
           BUNDLE_GEMFILE: ${{ matrix.gemfile }}
