@@ -77,6 +77,11 @@ describe 'A better distance_of_time_in_words' do
         expect(hash[:minutes]).to eq(6)
         expect(hash[:seconds]).to eq(7)
       end
+
+      it 'returns 12 months between beginning and end of year' do
+        hash = distance_of_time_in_words_hash(Time.now.beginning_of_year, Time.now.end_of_year)
+        expect(hash).to eq({})
+      end
     end
   end
 
