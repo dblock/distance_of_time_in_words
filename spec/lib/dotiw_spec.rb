@@ -273,7 +273,15 @@ describe 'A better distance_of_time_in_words' do
           [START_TIME,
            START_TIME + 1.year + 2.months + 3.weeks + 4.days + 5.hours + 6.minutes + 7.seconds,
            { vague: nil },
-           '1 year, 2 months, 3 weeks, 4 days, 5 hours, 6 minutes, and 7 seconds']
+           '1 year, 2 months, 3 weeks, 4 days, 5 hours, 6 minutes, and 7 seconds'],
+          [START_TIME,
+            START_TIME + 1.year + 2.months,
+            { vague: true, locale: :en },
+            'about 1 year'],
+          [START_TIME,
+            START_TIME + 1.year + 2.months,
+            { vague: true, locale: :nb },
+            'rundt 1 år']
         ].each do |start, finish, options, output|
           it "should be #{output}" do
             expect(distance_of_time_in_words(start, finish, true, options)).to eq(output)
